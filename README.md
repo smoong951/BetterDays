@@ -1,5 +1,5 @@
-# Better Days [![](http://cf.way2muchnoise.eu/full_895618_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/betterdays)
-[![](http://cf.way2muchnoise.eu/versions/895618.svg)](https://www.curseforge.com/minecraft/mc-mods/betterdays/files)
+# Better Days [![](http://cf.way2muchnoise.eu/full_895618_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/betterdays) [![Project](https://modrinth.roughness.technology/full_betterdays_downloads.svg)](https://modrinth.com/mod/betterdays)
+[![](https://modrinth.roughness.technology/versions/betterdays.svg)](https://modrinth.com/mod/betterdays/versions)
 [![](https://img.shields.io/badge/NeoForge-20.4+-orange.svg?longCache=true&style=flat)](https://www.curseforge.com/minecraft/mc-mods/betterdays/files?gameVersionTypeId=6)
 [![](https://img.shields.io/badge/Fabric-0.46.0+-yellowgreen.svg?longCache=true&style=flat)](https://www.curseforge.com/minecraft/mc-mods/betterdays/files?gameVersionTypeId=4)
 ![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg?&style=flat-square)
