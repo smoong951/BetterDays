@@ -270,6 +270,8 @@ Location relative to Minecraft folder: `./config/betterdays-client.toml`
 	#Sets the scale of the bed clock.
 	#Range: > 1
 	clockScale = 64
+    #This setting blacklists the sky rendering for specific dimensions. Like in the Aether if using /time set command, the sky jitters. Adding to the blacklist will prevent this behavior.
+    blacklistDimensions = ["aether:the_aether"]
 ```
 
 
