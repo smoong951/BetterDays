@@ -21,14 +21,24 @@
 
 package betterdays.config;
 
-import betterdays.platform.Services;
-import org.apache.commons.lang3.tuple.Pair;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+import com.google.common.collect.Sets;
 
 import com.illusivesoulworks.spectrelib.config.SpectreConfigSpec;
+
+import net.minecraft.resources.ResourceLocation;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 import betterdays.client.gui.ScreenAlignment;
 import betterdays.message.ChatTypeOptions;
 import betterdays.message.TemplateMessage;
+import betterdays.platform.Services;
 import betterdays.time.effects.EffectCondition;
 import betterdays.time.Time;
 
@@ -50,7 +60,11 @@ public class ConfigHandler {
         COMMON = specPairCommon.getLeft();
     }
 
-    public static void init() {}
+    public static void init() {
+        for (String dimensionKey : CLIENT.blacklistDimensions.get()) {
+            Client.blacklistDimensionsSet.add(ResourceLocation.parse(dimensionKey));
+        }
+    }
 
     public static class Client {
 
@@ -58,6 +72,14 @@ public class ConfigHandler {
         private final SpectreConfigSpec.IntValue clockScale;
         private final SpectreConfigSpec.IntValue clockMargin;
         private final SpectreConfigSpec.BooleanValue preventClockWobble;
+        private final SpectreConfigSpec.ConfigValue<List<? extends String>> blacklistDimensions;
+        private static final List<String> blacklistDimensionsList = List.of("blacklistDimensions");
+        private static final String[] defaultBlacklistDimensions = new String[] {
+            "aether:the_aether"
+        };
+        private static final Set<ResourceLocation> blacklistDimensionsSet = Sets.newHashSet();
+        private static final Predicate<Object> resourceLocationValidator = s -> s instanceof String
+            && ((String) s).matches("[a-z]+[:]{1}[a-z_]+");
 
         public Client(SpectreConfigSpec.Builder builder) {
             builder.push("gui"); // gui
@@ -79,6 +101,13 @@ public class ConfigHandler {
                     "unused if displayBedClock is false.")
                     .define("preventClockWobble", true);
 
+                blacklistDimensions = builder
+                    .comment(
+                        "This setting blacklists the sky rendering for specific dimensions. Like in the Aether if using "+
+                        "/time set command, the sky jitters. Adding to the blacklist will prevent this behavior."
+                    )
+                    .defineListAllowEmpty(blacklistDimensionsList, getBlacklistDimensionsList(), resourceLocationValidator);
+
             builder.pop(); // gui
 
         }
@@ -97,6 +126,14 @@ public class ConfigHandler {
 
         public static boolean preventClockWobble() {
             return CLIENT.preventClockWobble.get();
+        }
+
+        public static Set<ResourceLocation> getBlacklistDimensions() {
+            return blacklistDimensionsSet;
+        }
+
+        private static Supplier<List<? extends String>> getBlacklistDimensionsList() {
+            return () -> Arrays.asList(Client.defaultBlacklistDimensions);
         }
 
     }

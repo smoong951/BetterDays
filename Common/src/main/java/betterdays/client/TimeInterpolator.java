@@ -24,6 +24,7 @@ package betterdays.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.LevelAccessor;
 
+import betterdays.config.ConfigHandler;
 import betterdays.time.Time;
 import betterdays.wrappers.ClientLevelWrapper;
 
@@ -72,8 +73,8 @@ public class TimeInterpolator {
 
         if (!minecraft.isPaused()
                 && instance != null
-                && instance.level.get().equals(minecraft.level)) {
-
+                && instance.level.get().equals(minecraft.level)
+                && !ConfigHandler.Client.getBlacklistDimensions().contains(instance.level.get().dimension().location())) {
             instance.partialTick(renderTickTime);
         }
     }
