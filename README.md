@@ -61,6 +61,9 @@ Better Days is compatible with the following mods:
  * [Nomadic Tents](https://www.curseforge.com/minecraft/mc-mods/nomadic-tents)
    * Better Days is compatible with this mod. However, sleep causes an extra full day cycle to pass
      after waking.
+ * [The Hordes](https://www.curseforge.com/minecraft/mc-mods/the-hordes)
+   * Better Days is compatible with this mod. However, you MUST set gordeEventByPlayerTime = false
+     or it will not work at all.
 
 #### Sleep Vote Mods
 
