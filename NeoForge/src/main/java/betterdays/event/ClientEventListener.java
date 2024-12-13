@@ -15,13 +15,6 @@ import betterdays.client.TimeInterpolator;
 public class ClientEventListener {
 
     @SubscribeEvent
-    public void onClientTick(ClientTickEvent.Pre event) {
-        Minecraft minecraft = Minecraft.getInstance();
-
-        SleepGui.onClientTick(minecraft);
-    }
-
-    @SubscribeEvent
     public void onGuiEvent(ScreenEvent.Render.Post event) {
         if (event.getScreen() instanceof InBedChatScreen) {
             SleepGui.onGuiEvent(event.getScreen(), event.getGuiGraphics());

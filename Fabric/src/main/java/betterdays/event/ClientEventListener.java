@@ -11,8 +11,6 @@ import betterdays.client.TimeInterpolator;
 public class ClientEventListener {
 
     public static void setup() {
-        ClientTickEvents.START_CLIENT_TICK.register(SleepGui::onClientTick);
-
         ScreenEvents.AFTER_INIT.register((minecraft, screen, scaledWidth, scaledHeight) -> {
             if (screen instanceof InBedChatScreen) {
                 ScreenEvents.afterRender(screen).register(((renderScreen, guiGraphics, mouseX, mouseY, tickDelta) -> {

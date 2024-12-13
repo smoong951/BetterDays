@@ -21,7 +21,6 @@
 
 package betterdays.client.gui;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.item.ItemStack;
@@ -35,22 +34,6 @@ import betterdays.config.ConfigHandler;
 public class SleepGui {
 
     private static ItemStack clock = new ItemStack(Items.CLOCK);
-
-    /**
-     * Event listener that is called once per client tick. Updates the clock texture to prevent
-     * clock wobble when getting in bed.
-     */
-    public static void onClientTick(Minecraft minecraft) {
-        if (minecraft.player != null
-                && minecraft.player.isSleeping()
-                && ConfigHandler.Client.preventClockWobble()
-                && minecraft.level != null
-                && !minecraft.isPaused()
-                && clockEnabled()) {
-            // Render a clock every tick to prevent clock wobble after getting in bed.
-            minecraft.getItemRenderer().getModel(clock, minecraft.level, minecraft.player, 0);
-        }
-    }
 
     /**
      * Event listener that is called during GUI rendering. Renders additional GUI elements.
